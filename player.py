@@ -1,5 +1,3 @@
-from curses import KEY_F9
-from netaddr import mac_bare
 import pygame as pg
 from settings import *
 import math
