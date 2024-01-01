@@ -9,9 +9,10 @@ class RayCasting:
     def ray_cast(self):
         ox, oy = self.game.player.pos
         
-        x_map, y_map = self.game.player.pos
+        x_map, y_map = self.game.player.map_pos
         
-        ray_angle = self.game.player.angle = HALF_FOV + 0.0001
+        ray_angle = self.game.player.angle - HALF_FOV + 0.0001
+        
         for ray in range(NUM_RAYS):
             sin_a = math.sin(ray_angle)
             cos_a = math.cos(ray_angle)
@@ -54,6 +55,15 @@ class RayCasting:
                 y_vert += dy
                 
                 depth_vert += delta_depth
+                
+            # depth
+            if depth_vert < depth_hor:
+                depth = depth_vert
+            else:
+                depth = depth_hor
+                
+            # draw vision for debug
+            pg.draw.line(self.game.screen, 'blue', (100 * ox, 100 * oy), (100 * ox + 100 * depth * cos_a, 100 * oy + 100 * depth * sin_a), 2)
         
             ray_angle += DELTA_ANGLE
     
