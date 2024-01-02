@@ -5,7 +5,7 @@ from settings import *
 class RayCasting:
     def __init__(self, game) -> None:
         self.game = game
-    
+
     def ray_cast(self):
         ox, oy = self.game.player.pos
         
@@ -16,7 +16,7 @@ class RayCasting:
         for ray in range(NUM_RAYS):
             sin_a = math.sin(ray_angle)
             cos_a = math.cos(ray_angle)
-        
+            
             # horizontals
             y_hor, dy = (y_map + 1, 1) if sin_a > 0 else (y_map - 1e-6, -1)
             
@@ -34,9 +34,9 @@ class RayCasting:
                 
                 x_hor += dx
                 y_hor += dy
-                depth_hor += delta_depth
+                depth_hor += delta_depth            
             
-            # verticals
+            # vertial 
             x_vert, dx = (x_map + 1, 1) if cos_a > 0 else (x_map - 1e-6, -1)
             
             depth_vert = (x_vert - ox) / cos_a
@@ -53,21 +53,18 @@ class RayCasting:
                 
                 x_vert += dx
                 y_vert += dy
-                
                 depth_vert += delta_depth
-                
+            
             # depth
             if depth_vert < depth_hor:
                 depth = depth_vert
             else:
                 depth = depth_hor
                 
-            # draw vision for debug
-            pg.draw.line(self.game.screen, 'blue', (100 * ox, 100 * oy), (100 * ox + 100 * depth * cos_a, 100 * oy + 100 * depth * sin_a), 2)
-        
+            # draw for debug
+            pg.draw.line(self.game.screen, 'yellow', (100 * ox, 100 * oy), (100 * ox + 100 * depth * cos_a, 100 * oy + 100 * depth * sin_a), 2)
+            
             ray_angle += DELTA_ANGLE
-    
+
     def update(self):
         self.ray_cast()
-        
-    
