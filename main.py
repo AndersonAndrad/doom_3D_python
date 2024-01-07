@@ -1,5 +1,3 @@
-from re import M
-from click import pass_context
 import pygame as pg
 import sys
 from settings import *
