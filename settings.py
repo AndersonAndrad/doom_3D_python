@@ -5,6 +5,9 @@ HALF_WIDTH = WIDTH // 2
 HALF_HEIGHT = HEIGHT // 2
 FPS = 60 
 
+# floor settings
+FLOOR_COLOR = (30, 30, 30)
+
 # player settings
 PLAYER_POS = 1.5, 5 # mini_map
 PLAYER_ANGLE = 0
