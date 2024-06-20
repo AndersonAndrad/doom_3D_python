@@ -30,7 +30,7 @@ class Player:
             self.game.object_renderer.game_over()
             pg.display.flip()
             pg.time.delay(1500)
-            self.game.new_game()
+            self.game.new_games()
 
     def get_damage(self, damage):
         self.health -= damage
@@ -71,10 +71,10 @@ class Player:
         self.check_wall_collision(dx, dy)
 
         # move camera by keys
-        # if keys[pg.K_q]:
-        #     self.angle -= PLAYER_ROT_SPEED * self.game.delta_time
-        # if keys[pg.K_e]:
-        #     self.angle += PLAYER_ROT_SPEED * self.game.delta_time
+        if keys[pg.K_q]:
+            self.angle -= PLAYER_ROT_SPEED * self.game.delta_time
+        if keys[pg.K_e]:
+            self.angle += PLAYER_ROT_SPEED * self.game.delta_time
 
         self.angle %= math.tau
 
